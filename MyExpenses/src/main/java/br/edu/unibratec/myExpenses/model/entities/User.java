@@ -10,7 +10,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long aIdentifier;
+	private Long aIdentifier;
 
 	private String		aName;
 	
@@ -35,11 +35,11 @@ public class User {
 		this.aPassword = aPassword;
 	}
 
-	public long getIdentifier() {
+	public Long getIdentifier() {
 		return aIdentifier;
 	}
 
-	public void setIdentifier(long aIdentifier) {
+	public void setIdentifier(Long aIdentifier) {
 		this.aIdentifier = aIdentifier;
 	}
 
