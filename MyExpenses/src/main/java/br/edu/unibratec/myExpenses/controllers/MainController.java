@@ -1,4 +1,4 @@
-package br.edu.unibratec.myExpenses;
+package br.edu.unibratec.myExpenses.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

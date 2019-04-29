@@ -1,65 +1,75 @@
 package br.edu.unibratec.myExpenses.model.entities;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class User {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long aIdentifier;
 
-	private String aName;
-	private Date aBirthday;
-	private String aEmail;
+	private String		aName;
+	
+	/*
+	 * @Temporal(TemporalType.DATE) private Date aBirthday;
+	 */
+	
+	private String		aEmail;
 
 	private String aPassword;
 
-	public User(String aName, Date aBirthday, String aEmail, String aPassword) {
+	public User(
+		String aName, 
+		//Date aBirthday, 
+		String aEmail, 
+		String aPassword
+	) {
 		super();
 		this.aName = aName;
-		this.aBirthday = aBirthday;
+		//this.aBirthday = aBirthday;
 		this.aEmail = aEmail;
 		this.aPassword = aPassword;
 	}
 
-	public long getaIdentifier() {
+	public long getIdentifier() {
 		return aIdentifier;
 	}
 
-	public void setaIdentifier(long aIdentifier) {
+	public void setIdentifier(long aIdentifier) {
 		this.aIdentifier = aIdentifier;
 	}
 
-	public String getaName() {
+	public String getName() {
 		return aName;
 	}
 
-	public void setaName(String aName) {
+	public void setName(String aName) {
 		this.aName = aName;
 	}
 
-	public Date getaBirthday() {
-		return aBirthday;
-	}
+	/*
+	 * public Date getBirthday() { return aBirthday; }
+	 * 
+	 * public void setBirthday(Date aBirthday) { this.aBirthday = aBirthday; }
+	 */
 
-	public void setaBirthday(Date aBirthday) {
-		this.aBirthday = aBirthday;
-	}
-
-	public String getaEmail() {
+	public String getEmail() {
 		return aEmail;
 	}
 
-	public void setaEmail(String aEmail) {
+	public void setEmail(String aEmail) {
 		this.aEmail = aEmail;
 	}
 
-	public String getaPassword() {
+	public String getPassword() {
 		return aPassword;
 	}
 
-	public void setaPassword(String aPassword) {
+	public void setPassword(String aPassword) {
 		this.aPassword = aPassword;
 	}
 	
@@ -67,7 +77,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((aBirthday == null) ? 0 : aBirthday.hashCode());
+		//result = prime * result + ((aBirthday == null) ? 0 : aBirthday.hashCode());
 		result = prime * result + ((aEmail == null) ? 0 : aEmail.hashCode());
 		result = prime * result + (int) (aIdentifier ^ (aIdentifier >>> 32));
 		result = prime * result + ((aName == null) ? 0 : aName.hashCode());
@@ -84,11 +94,12 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (aBirthday == null) {
-			if (other.aBirthday != null)
-				return false;
-		} else if (!aBirthday.equals(other.aBirthday))
-			return false;
+		
+		/*
+		 * if (aBirthday == null) { if (other.aBirthday != null) return false; } else if
+		 * (!aBirthday.equals(other.aBirthday)) return false;
+		 */
+		
 		if (aEmail == null) {
 			if (other.aEmail != null)
 				return false;
@@ -113,11 +124,9 @@ public class User {
 	public String toString() {
 		return "User [aIdentifier="		+ aIdentifier + 
 					", aName="			+ aName + 
-					", aBirthday="		+ aBirthday + 
+				//	", aBirthday="		+ aBirthday + 
 					", aEmail="			+ aEmail + 
 					", aPassword="		+ aPassword + "]";
 	}
-	
-	
 	
 }
