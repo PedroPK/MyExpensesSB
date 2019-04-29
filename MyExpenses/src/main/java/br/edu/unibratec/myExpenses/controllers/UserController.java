@@ -1,5 +1,7 @@
 package br.edu.unibratec.myExpenses.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.unibratec.myExpenses.model.entities.User;
 import br.edu.unibratec.myExpenses.model.repositories.UserRepository;
+import br.edu.unibratec.myExpenses.utils.UtilDateTime;
 
 @RestController
 @RequestMapping("/users")
@@ -37,7 +40,28 @@ public class UserController {
 		
 		this.aRepository.save(user);
 		
-		return "The Default User was Saved in the Database.";
+		return "The Default User was Saved in the Database." + 
+					"<br>" + 
+					UtilDateTime.getDataHoraHojeAgora();
+	}
+	
+	@RequestMapping("/selectInitialLoadedUser")
+	public String selectInitialLoadedUser() {
+		System.out.println("/selectInitialLoadedUser was invoked");
+		List<User> usersList = this.aRepository.findByName("John");
+		
+		String answer = ""; 
+		if ( usersList == null || usersList.isEmpty() ) {
+			answer = "There is no User saved at Database.";
+		} else {
+			for (User user: usersList) {
+				answer = user.toString() + "\n";
+			}
+		}
+		
+		return answer + 
+				"<br>" + 
+				UtilDateTime.getDataHoraHojeAgora();
 	}
 	
 }
