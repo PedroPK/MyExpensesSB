@@ -21,6 +21,11 @@ public class User {
 	private String		aEmail;
 
 	private String aPassword;
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public User(
 		String aName, 
