@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 import br.edu.unibratec.myExpenses.model.enumeration.FinancialTransactionType;
 
-//@Entity
+@Entity
 public class FinancialTransaction {
 
 	@Id
