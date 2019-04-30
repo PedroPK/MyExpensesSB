@@ -1,9 +1,15 @@
 package br.edu.unibratec.myExpenses.model.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class User {
@@ -11,15 +17,34 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long aIdentifier;
-
+	
+	@NotNull
+	@Length(
+		min = 2, 
+		max = 250, 
+		message = "The Name has to be as least {min} and at most {max} characters")
 	private String		aName;
 	
 	/*
-	 * @Temporal(TemporalType.DATE) private Date aBirthday;
-	 */
+	 * @Temporal(TemporalType.DATE)*/
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private Date aBirthday;
 	
+	
+	@NotNull
+	@Length(
+		min = 5,
+		max = 50,
+		message = "The eMail has to be as least {min} and at most {max} characters"
+	)
 	private String		aEmail;
-
+	
+	@NotNull
+	@Length(
+		min = 6,
+		max = 50,
+		message = "The Password has to be as least {min} and at most {max} characters"
+	)
 	private String aPassword;
 	
 	public User() {
