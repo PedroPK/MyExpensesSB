@@ -1,7 +1,5 @@
 package br.edu.unibratec.myExpenses.controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.unibratec.myExpenses.model.entities.User;
-import br.edu.unibratec.myExpenses.model.repositories.UserRepository;
+import br.edu.unibratec.myExpenses.model.repositories.UserRepositoryPagingSort;
 import br.edu.unibratec.myExpenses.utils.UtilDateTime;
 
 @RestController
@@ -20,7 +18,7 @@ import br.edu.unibratec.myExpenses.utils.UtilDateTime;
 public class UserController {
 	
 	@Autowired
-	private UserRepository	aRepository;
+	private UserRepositoryPagingSort	aRepository;
 	
 	@RequestMapping(
 		value	= "/find/{name}",
@@ -34,6 +32,12 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * URL to access this method
+	 *  - http://localhost:9000/users/initialLoad
+	 *  
+	 * @return
+	 */
 	@RequestMapping("/initialLoad")
 	public String inicialLoadUser() {
 		User user = new User("Johnny", "johnny@is.com", "Planet of Apes");
@@ -45,9 +49,14 @@ public class UserController {
 					UtilDateTime.getDataHoraHojeAgora();
 	}
 	
+	/**
+	 * URL to access this method
+	 *  - http://localhost:9000/users/selectInitialLoadedUser
+	 *  
+	 * @return
+	 */
 	@RequestMapping("/selectInitialLoadedUser")
 	public String selectInitialLoadedUser() {
-		System.out.println("/selectInitialLoadedUser was invoked");
 		List<User> usersList = this.aRepository.findByName("John");
 		
 		String answer = ""; 
@@ -55,7 +64,7 @@ public class UserController {
 			answer = "There is no User saved at Database.";
 		} else {
 			for (User user: usersList) {
-				answer = user.toString() + "\n";
+				answer = user.toString() + "\n<br>\n";
 			}
 		}
 		
