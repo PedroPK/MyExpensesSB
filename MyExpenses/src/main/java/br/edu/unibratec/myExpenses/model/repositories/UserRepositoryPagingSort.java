@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import br.edu.unibratec.myExpenses.model.entities.User;
 
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+@Repository			// Once it extends a Spring Data Repository Interface, this annotation is just didactic, informational and optional. 
+public interface UserRepositoryPagingSort extends PagingAndSortingRepository<User, Long> {
 	
 	// Manually implemented methods
 	
