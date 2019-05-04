@@ -2,17 +2,20 @@ package br.edu.unibratec.myExpenses.model.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class User {
+public class User implements EntityInterface {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +49,9 @@ public class User {
 		message = "The Password has to be as least {min} and at most {max} characters"
 	)
 	private String aPassword;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Address aAddress;
 	
 	public User() {
 		super();
@@ -103,15 +109,24 @@ public class User {
 		this.aPassword = aPassword;
 	}
 	
+	public Address getaAddress() {
+		return aAddress;
+	}
+
+	public void setaAddress(Address aAddress) {
+		this.aAddress = aAddress;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		//result = prime * result + ((aBirthday == null) ? 0 : aBirthday.hashCode());
-		result = prime * result + ((aEmail == null) ? 0 : aEmail.hashCode());
 		result = prime * result + (int) (aIdentifier ^ (aIdentifier >>> 32));
-		result = prime * result + ((aName == null) ? 0 : aName.hashCode());
-		result = prime * result + ((aPassword == null) ? 0 : aPassword.hashCode());
+		result = prime * result + ((aEmail		== null) ? 0 : aEmail.hashCode());
+		result = prime * result + ((aName		== null) ? 0 : aName.hashCode());
+		result = prime * result + ((aPassword	== null) ? 0 : aPassword.hashCode());
+		result = prime * result + ((aAddress	== null) ? 0 : aAddress.hashCode());
 		return result;
 	}
 
@@ -135,18 +150,28 @@ public class User {
 				return false;
 		} else if (!aEmail.equals(other.aEmail))
 			return false;
+		
 		if (aIdentifier != other.aIdentifier)
 			return false;
+		
 		if (aName == null) {
 			if (other.aName != null)
 				return false;
 		} else if (!aName.equals(other.aName))
 			return false;
+		
 		if (aPassword == null) {
 			if (other.aPassword != null)
 				return false;
 		} else if (!aPassword.equals(other.aPassword))
 			return false;
+		
+		if (aAddress == null) {
+			if (other.aAddress != null)
+				return false;
+		} else if (!aAddress.equals(other.aAddress))
+			return false;
+		
 		return true;
 	}
 
@@ -156,7 +181,15 @@ public class User {
 					", aName="			+ aName + 
 				//	", aBirthday="		+ aBirthday + 
 					", aEmail="			+ aEmail + 
-					", aPassword="		+ aPassword + "]";
+					", aPassword="		+ aPassword +
+					", aAddress="		+ aAddress +
+				"]";
+	}
+
+	@Override
+	public Object getPrimaryKey() {
+		// TODO Auto-generated method stub
+		return getIdentifier();
 	}
 	
 }
