@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html	xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="layout">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	</head>
+	<body>
+		<h1 layout:fragment="header">
+			My Expenses
+			<small>Control Panel</small>
+		</h1>
+		<div layout:fragment="content" class="container">
+			<div class="jumbotron">
+				<a	href="@{/environment}"
+					class="btn btn-lg btn-info">Environment</a>
+				<a	href="@{/h2}"
+					class="btn btn-lg btn-info">H2 Console</a>
+			</div>
+		</div>
+	</body>
+</html>
