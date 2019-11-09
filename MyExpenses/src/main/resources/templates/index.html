@@ -10,6 +10,7 @@
 			My Expenses
 			<small>Control Panel</small>
 		</h1>
+		
 		<div layout:fragment="content" class="container">
 			<div class="jumbotron">
 				<a	href="@{/environment}"
@@ -17,6 +18,17 @@
 				<a	href="http://localhost:9000/h2-console/"
 					class="btn btn-lg btn-info">H2 Console</a>
 			</div>
+			<br>
+			<div class="jumbotron">
+				<a	href="@{/environment}"
+					class="btn btn-lg btn-info">Environment</a>
+				<a	href="http://localhost:9000/h2-console/"
+					class="btn btn-lg btn-info">H2 Console</a>
+			</div>
 		</div>
+		
+		<!-- The right way to put an Image into a Thymeleaf page -->
+		<img th:src="@{/img/thymeleaf_logo_white.png}" />
+		
 	</body>
 </html>
